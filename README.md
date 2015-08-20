@@ -1,7 +1,7 @@
 solinea/debian
 ---
 
-Minimal base image Debian stable.
+Minimal base image from Debian stable.
 
 `solinea/debian` is a Docker base image based on a stable release of Debian.
 
