@@ -1,23 +1,14 @@
 sudo: required
-
 language: ruby
-
 services:
-  - docker
-
+- docker
 env:
-  - IMAGE_NAME=debian
-
+- IMAGE_NAME=debian
 script:
-  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
-  - ./build/test-image.sh
-
+- docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
+- ./build/test-image.sh
 after_success:
-  - ./build/push-image.sh
-
+- ./build/push-image.sh
 notifications:
   slack:
-    secure: F0jfBAhE1G4IypRxnIQWsF5Ai/XaULtaznZQeIgpA+GKgS03EXh20oOw3Bq2xSTrf6XOtJyZiVbzka9AB8cHkvxXCeC3ehDpKEp0+324Neg4oIHlCcYuGWU179GPFcdvAhHkzHsc6uEkVsx0mg1QMDlzGGCzl9kKEP0kvKXm+GgGbP1J8rFZaRd/fcjo76/9Kbn19yNiIEmFKK1ZbVoJQH0hhIudXzkZY39mbJJHGyc7Zed4ItTljdv17i3n4V7r9iJxd274arRRUDwwAJKsCn0Z66/pMBJ1ShHBpohKyNbd4w6knwpcr6y3ikSx2CmKaZUDKrRqGqbl5NNBZ46XZuGTYAPyLetCwnYNp/iY6D0ID8sWZKQTDHneqI8DNKStH06t6ql58qg81m7qPwxpT+NtW9bObqkcpryE8S4vcauQrTkMsR0TItwKj9iRatymjaEfQpNilkhwiwX8r31stXouqRVKuJ4MFKua4gZa5ePNh7bUuXlYITTNfX4eS7SXFGOKAJ49r3AURad6l2ynAMBcCpch4GkfHOXYS1G/nTC9s1BypaZobw4QmSqTNx9aLS/fburM4+zfc/+FyvbS7xXG7x/8YYg/+ruGpZBnzNFADKKZnQ5Q2vsHqsQObG1VvL7691ofWFwYae7zplBolVgr2RGpJNe8r894ujkn0OU=
-    on_success: always # default: always [always|never|change]
-    on_failure: always # default: always [always|never|change]
-    on_start:   always # default: always [always|never|change]
+    secure: DtkaB63oWN9hYZ2MutTgMt9sqgoyvuFJrY9le00URuQB7Xr0HI0zBSKmUGm1spKx9Ta0QGiD2v211IZsvJtX+yNnIcA/sVQ5ss7rNa3VyGfsyyOtILkBrwtpwUbo2V424qgdW5CNS9j3vHOmmGAFJl0ceMNOgqi+z9izV3fqntHt8wMbAQw/m/GjpJzMTsPek2sMTmYKoN2A2W+ZnjjYxAupV+zy0/swbgPP0McK4RJG/LhMPrhZm3BSunNYUC6rL+XzEGV9nU58ULaUEFc+bQB5bpdAEfynOvosRJ2bMVh5PmZq3FyD85OTqvjuWYgDSLFGtLdphQrnHFblNSEf1/Ue3rpPY4tcywQpy2ocL+RHLypoD9Jw2RukTkgW0JeWuY10SquOFeKXh4qv7Fzxcd2iILh2Q6Hn08ikRIA5vaU5CVbaWc51OPh3D9+TTeeq8MqTbUvNhcLOvH8GjhxBDAR7DywVbNDzgNiekCXkbWJBpoeMOURnuuosJ9SPNKxmjz0EugCfin/pl6CfCUfpaRB1Mq3sTFFWtUYWx20l7U7KkBs+QlSILvTpkfw/CFj7tlcgWmlEhn6NBJ2+HFkQrndTCzcsvgQq3y8utcl4x6mQjRAnOoaN4zylra9qwDaGCg4DGf2kQDNIFZzAPBbvt0jK8fHebaU8/aaRkYAKAw8=
