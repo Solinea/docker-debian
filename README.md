@@ -35,7 +35,7 @@ environment. These can be set on the command line, or via the web page.
 
     travis env set DOCKER_EMAIL me@example.com
     travis env set DOCKER_USERNAME myusername
-    travis env set DOCKER_PASSWORD secretsecret
+    travis env set -p DOCKER_PASSWORD secretsecret
     travis env set DOCKER_REGISTRY registry.example.com
     travis env set DOCKER_REGISTRY_DEV develop.registry.example.com
 
