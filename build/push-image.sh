@@ -18,7 +18,7 @@ fi
 
 # Log in to registry
 if [ "${registry}" ]; then
-  echo docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${registry}
+  docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" ${registry}
 else
   echo "Docker registry failed to set properly, exiting."
   exit 1
@@ -39,10 +39,10 @@ fi
 
 # Tag and push all image tags
 for tag in ${tags[@]}; do
-  echo docker tag ${IMAGE_NAME}:${TRAVIS_COMMIT} ${tag}
+  docker tag ${IMAGE_NAME}:${TRAVIS_COMMIT} ${tag}
 done
 
 # Push images (may add branch criteria in the future)
 for tag in ${tags[@]}; do
-  echo docker push ${tag}
+  docker push ${tag}
 done
