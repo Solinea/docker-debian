@@ -27,3 +27,16 @@ apt-get by removing temporary files.
 Debian was chosen due to the minimal distribution size. In addition, we wanted
 to mitigate any licensing concerns over building on and redistributing a larger
 distribution like CentOS or Ubuntu.
+
+# Building
+
+The following variables must be configured within the Travis CI build
+environment. These can be set on the command line, or via the web page.
+
+    travis env set DOCKER_EMAIL me@example.com
+    travis env set DOCKER_USERNAME myusername
+    travis env set DOCKER_PASSWORD secretsecret
+    travis env set DOCKER_REGISTRY registry.example.com
+    travis env set DOCKER_REGISTRY_DEV develop.registry.example.com
+
+Note that `DOCKER_REGISTRY_DEV` only needs to be set if pushing commit build images.
