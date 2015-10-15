@@ -5,20 +5,15 @@ language: ruby
 services:
   - docker
 
-# branch whitelist
-branches:
-  only:
-    - master
-    - /^stable\/*$/   # stable/
-
-before_script:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" $REGISTRY
+env:
+  - IMAGE_NAME=debian
 
 script:
-  - docker build -t $DOCKER_REGISTRY/$IMAGE:$TAG
+  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
+  - ./build/test-image.sh
 
-after_script:
-  # push to docker repo
+after_success:
+  - ./build/push-image.sh
 
 notifications:
   slack:
