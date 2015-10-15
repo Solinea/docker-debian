@@ -1,8 +1,13 @@
 #!/bin/bash
-set -ev
+set -e
 
 declare -a tags
 declare registry image_base
+
+echo branch: ${TRAVIS_BRANCH}
+echo commit: ${TRAVIS_COMMIT}
+echo tag: ${TRAVIS_TAG}
+echo pr: ${TRAVIS_PULL_REQUEST}
 
 # Set built image base name
 if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_TAG}" ]; then
