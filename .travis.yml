@@ -6,11 +6,9 @@ env:
 script:
   - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
 after_success:
-  - ./build/test-image.sh
+  - ./scripts/test-image.sh
+  - ./scripts/push-artifactory-develop.sh
 deploy:
-  - provider: script
-    script: scripts/push-artifactory-develop.sh
-    all_branches: true
   - provider: script
     script: scripts/push-artifactory-release.sh
     tags: true
