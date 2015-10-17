@@ -4,9 +4,9 @@ services:
   - docker
 env:
   - NAME=${TRAVIS_REPO_SLUG:15} COMMIT=${TRAVIS_COMMIT:0:7}
+install:
+  - docker build -t ${NAME}:${COMMIT} .
 script:
-  - docker build -t ${NAME}:${COMMIT}
-after_success:
   - ./scripts/test-image.sh
 before_deploy:
   - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
