@@ -3,7 +3,7 @@ require 'spec_helper'
 context "baseimage" do
   before(:all) do
     set :os, :family => 'debian'
-    image = Docker::Image.get(ENV['IMAGE'])
+    image = Docker::Image.get(ENV['NAME'])
     set :docker_image, image.id
   end
 
