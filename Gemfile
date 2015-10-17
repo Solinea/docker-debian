@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # # vi: set ft=ruby :
 #
-source 'https://rubygems.org'
+source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-group :test do
+group :development, :test do
   gem 'rake'
 
   gem 'serverspec'
