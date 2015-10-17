@@ -1,4 +1,6 @@
 #!/bin/bash
 set -ev
 
-docker run -ti $NAME:$COMMIT echo Success
+docker images --digests "${DOCKER_REGISTRY_DEV}/${NAME}"
+
+docker run -ti "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}" echo Success
