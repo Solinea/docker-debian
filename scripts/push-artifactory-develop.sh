@@ -1,15 +1,9 @@
 #!/bin/bash
-set -e
+set -ev
 
 registry="${DOCKER_REGISTRY_DEV}"
-image_base="${registry}/${IMAGE_NAME}"
-tag="${image_base}:${TRAVIS_COMMIT}-${TRAVIS_BRANCH}"
+image_base="${registry}/${NAME}"
+tag="${image_base}:${TRAVIS_BRANCH}-${COMMIT}
 
-echo "Logging in to Docker registry..."
-exec docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${registry}"
-
-echo "Tagging image..."
-exec docker tag "${IMAGE_NAME}:${TRAVIS_COMMIT}" "${tag}"
-
-echo "Pushing image..."
+exec docker tag "${NAME}:${COMMIT}" "${tag}"
 exec docker push "${tag}"

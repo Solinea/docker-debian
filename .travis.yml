@@ -1,12 +1,16 @@
 sudo: required
+language: bash
 services:
   - docker
 env:
-  - IMAGE_NAME=debian
+  - NAME=${TRAVIS_REPO_SLUG:15} COMMIT=${TRAVIS_COMMIT:0:7}
 script:
-  - docker build -t $IMAGE_NAME:$TRAVIS_COMMIT .
+  - docker build -t ${NAME}:${COMMIT}
 after_success:
   - ./scripts/test-image.sh
+before_deploy:
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
 deploy:
   - provider: script
     script: scripts/push-artifactory-develop.sh
