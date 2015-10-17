@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ev
+set -ex
 
 # Tag & Push 'branch-commit' tag to Development Registry
 docker push "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}"
@@ -27,3 +27,7 @@ if [ "${TRAVIS_BRANCH}" = "master" ] && [ "${TRAVIS_TAG}" = "stable" ]; then
   docker tag -f "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}" "${DOCKER_REGISTRY}/${NAME}:stable"
   docker push "${DOCKER_REGISTRY}/${NAME}:stable"
 fi
+
+docker images "${DOCKER_REGISTRY_DEV}/${NAME}"
+
+echo Push complete.
