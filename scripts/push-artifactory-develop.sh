@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -ev
 #
 # The following env variables must be set:
 # IMAGE_NAME
@@ -20,4 +20,5 @@ tag="${image_base}:${TRAVIS_COMMIT}-${TRAVIS_BRANCH}"
 docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${registry}"
 
 exec docker tag ${IMAGE_NAME}:${TRAVIS_COMMIT} ${tag}
+
 exec docker push ${tag}
