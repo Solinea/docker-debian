@@ -5,9 +5,9 @@ services:
 env:
   - NAME=${TRAVIS_REPO_SLUG:15} COMMIT=${TRAVIS_COMMIT:0:7}
 install:
-  - docker build -t "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}" .
+  - docker build -t "${NAME}" .
 script:
-  - ./scripts/test-image.sh
+  - rake spec
 before_deploy:
   - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
   - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
