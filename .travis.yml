@@ -2,13 +2,11 @@ sudo: required
 language: ruby
 rvm:
   - 2.2.3
-gemfile: Gemfile
 services:
   - docker
 env:
   - NAME=${TRAVIS_REPO_SLUG:15} COMMIT=${TRAVIS_COMMIT:0:7}
 before_install:
-  - rm Gemfile.lock || true
   - gem install bundler
   - bundle install
 install:
