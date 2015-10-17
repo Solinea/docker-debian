@@ -9,7 +9,7 @@ env:
 install:
   - docker build -t "${NAME}" .
 script:
-  - rake spec
+  - bundle exec rspec
 before_deploy:
   - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
   - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
