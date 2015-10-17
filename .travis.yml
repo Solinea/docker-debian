@@ -10,9 +10,11 @@ after_success:
 deploy:
   - provider: script
     script: scripts/push-artifactory-develop.sh
-    all_branches: true
+    on:
+      all_branches: true
   - provider: script
     script: scripts/push-artifactory-release.sh
+    on: master
     tags: true
 notifications:
   slack:
