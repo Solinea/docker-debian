@@ -7,14 +7,14 @@ context "baseimage" do
     set :docker_image, image.id
   end
 
-  context "OS Version" do
+  context "baseimage:os" do
     describe file('/etc/os-release') do
       its(:content) { should match /ID=debian/ }
       its(:content) { should match /VERSION=\"8 \(jessie\)\"/ }
     end
   end
 
-  context "Environment" do
+  context "baseimage:environment" do
     describe command('echo $DEBIAN_FRONTEND') do
       its(:stdout) { should match /noninteractive/ }
     end
