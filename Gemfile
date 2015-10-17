@@ -3,7 +3,9 @@
 #
 source 'https://rubygems.org'
 
-gem 'rake'
+group :test do
+  gem 'rake'
 
-gem 'serverspec', '~> 2.0'
-gem 'docker-api', '~> 1.21' , :require => 'docker'
+  gem 'serverspec', '~> 2.0'
+  gem 'docker-api', '~> 1.21' , :require => 'docker'
+end
