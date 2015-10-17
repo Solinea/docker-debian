@@ -9,8 +9,8 @@ registry="${DOCKER_REGISTRY}"
 image_base="${registry}/${NAME}"
 tag="${image_base}:${TRAVIS_TAG}"
 
-exec docker tag "${NAME}:${COMMIT}" "${tag}"
-exec docker push "${tag}"
+docker tag "${NAME}:${COMMIT}" "${tag}"
+docker push "${tag}"
 
-exec docker tag ${NAME}:${COMMIT} ${image_base}:latest
-exec docker push ${image_base}:latest
+docker tag ${NAME}:${COMMIT} ${image_base}:latest
+docker push ${image_base}:latest
