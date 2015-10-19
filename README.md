@@ -12,6 +12,7 @@ Create a Dockerfile with the following content:
     FROM solinea/debian
 
 # Minimal Images
+
 Here are some tips for creating minimal images based on `solinea/debian`.
 
 When installing a package, run `apt-get install` without considering
@@ -24,6 +25,7 @@ apt-get by removing temporary files.
       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Operating System Distribution
+
 Debian was chosen due to the minimal distribution size. In addition, we wanted
 to mitigate any licensing concerns over building on and redistributing a larger
 distribution like CentOS or Ubuntu.
