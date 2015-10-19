@@ -14,8 +14,16 @@ before_install:
 install:
   - docker build -t "${NAME}" .
 before_deploy:
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
+  - >
+    docker login -e="${DOCKER_EMAIL}"
+                 -u="${DOCKER_USERNAME}"
+                 -p="${DOCKER_PASSWORD}"
+                 "${DOCKER_REGISTRY}"
+  - >
+    docker login -e="${DOCKER_EMAIL}"
+                 -u="${DOCKER_USERNAME}"
+                 -p="${DOCKER_PASSWORD}"
+                 "${DOCKER_REGISTRY_DEV}"
 deploy:
   - provider: script
     script: build/bin/push-artifactory

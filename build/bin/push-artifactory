@@ -16,5 +16,3 @@ if [ "${TRAVIS_TAG}" ]; then
 fi
 
 docker images "${DOCKER_REGISTRY_DEV}/${NAME}"
-
-echo Push complete.
