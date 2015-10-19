@@ -9,16 +9,13 @@ env:
 before_install:
   - gem install bundler
   - bundle install
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
-    "${DOCKER_REGISTRY_COM}"
-  - docker pull "${DOCKER_REGISTRY_COM}"/"${NAME}":latest || true
+  - docker login -e="${HUB_EMAIL}" -u="${HUB_USERNAME}" -p="${HUB_PASSWORD}"
+  - docker pull solinea/"${NAME}":latest || true
 install:
   - docker build -t "${NAME}" .
 before_deploy:
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
-    "${DOCKER_REGISTRY}"
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
-    "${DOCKER_REGISTRY_DEV}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
 deploy:
   - provider: script
     script: build/bin/push-artifactory
