@@ -9,18 +9,20 @@ env:
 before_install:
   - gem install bundler
   - bundle install
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_COM}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+    "${DOCKER_REGISTRY_COM}"
   - docker pull "${DOCKER_REGISTRY_COM}"/"${NAME}":latest || true
 install:
   - docker build -t "${NAME}" .
 before_deploy:
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY}"
-  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REGISTRY_DEV}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+    "${DOCKER_REGISTRY}"
+  - docker login -e="${DOCKER_EMAIL}" -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+    "${DOCKER_REGISTRY_DEV}"
 deploy:
   - provider: script
-    script: scripts/push-artifactory.sh
-    on:
-      all_branches: true
+    script: build/bin/push-artifactory
 notifications:
+  email: false
   slack:
-    secure: DtkaB63oWN9hYZ2MutTgMt9sqgoyvuFJrY9le00URuQB7Xr0HI0zBSKmUGm1spKx9Ta0QGiD2v211IZsvJtX+yNnIcA/sVQ5ss7rNa3VyGfsyyOtILkBrwtpwUbo2V424qgdW5CNS9j3vHOmmGAFJl0ceMNOgqi+z9izV3fqntHt8wMbAQw/m/GjpJzMTsPek2sMTmYKoN2A2W+ZnjjYxAupV+zy0/swbgPP0McK4RJG/LhMPrhZm3BSunNYUC6rL+XzEGV9nU58ULaUEFc+bQB5bpdAEfynOvosRJ2bMVh5PmZq3FyD85OTqvjuWYgDSLFGtLdphQrnHFblNSEf1/Ue3rpPY4tcywQpy2ocL+RHLypoD9Jw2RukTkgW0JeWuY10SquOFeKXh4qv7Fzxcd2iILh2Q6Hn08ikRIA5vaU5CVbaWc51OPh3D9+TTeeq8MqTbUvNhcLOvH8GjhxBDAR7DywVbNDzgNiekCXkbWJBpoeMOURnuuosJ9SPNKxmjz0EugCfin/pl6CfCUfpaRB1Mq3sTFFWtUYWx20l7U7KkBs+QlSILvTpkfw/CFj7tlcgWmlEhn6NBJ2+HFkQrndTCzcsvgQq3y8utcl4x6mQjRAnOoaN4zylra9qwDaGCg4DGf2kQDNIFZzAPBbvt0jK8fHebaU8/aaRkYAKAw8=
+    secure: SHvFB+mvJMTVMhAjzLG2cr9xUhuYn4Wj2K3ucLJ9MjDZV3d7a0Vxf2M2VXu33oZYGn93JrMLSZC4ptmGf6vx+fPAsa7TG4tjlYX3Bni7ZlcRUclaCfDKBWfbnlUJHt53CbaPouYhnDWN4TzViYauIioybpstokrnyxTH4YnNow19PXT5UfdddorQfP1s+9mZln6maUUQbadFBZ4YvhwWF1gkfxLCKyaU3ay8vBlBpaeJi1CxE3aUcrp4v/YsTKS1bk/sWD5ZrvEiHP+8oq/bUTf4mFrj6uHB07euyC0WKU4YTaD2QN9EH26yrQ7WmkIj4kWTamB40vbmhwJ3rRy6ItDkI4eOGDlL00yzW4+mmAGaI19Kz2nSlOND1OViEdl1MHY8vq/Jd5z0PpzhAsdpiKZE4p8q+YCKZ+tvQsjXvFihOIi/M98yhHK8ymC+vo1heMkc4ArVYnm7B/B4dMRHD54CFV8OA7sgCV3KWVYctWWqoTzdylttYoXzTDxhP6bZohYEKdqTTRsLDhfYWXSQm5lTaMvyVtmEpItFJXK0xAuv39ZMvyGEqOGKDraVR8x5FMf6ydnV2bTFnp/h9wRimSVJbFVnzQkFh6UpiBtaZIsioE3y0rpu72NmBn+z+hfZrjdAV90HV4bCzaGu9quuXj+D8jq5KQofu2aZHeZg9Uw=
