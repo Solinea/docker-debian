@@ -5,4 +5,4 @@ set -ex
 docker tag -f "${NAME}" "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}"
 docker push "${DOCKER_REGISTRY_DEV}/${NAME}:${TRAVIS_BRANCH}-${COMMIT}"
 
-docker images "${DOCKER_REGISTRY_DEV}/${NAME}"
+docker images

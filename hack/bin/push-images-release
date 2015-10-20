@@ -9,4 +9,4 @@ docker push "${DOCKER_REGISTRY}/${NAME}:${TRAVIS_BRANCH}"
 docker tag -f "${NAME}" "solinea/${NAME}:${TRAVIS_BRANCH}"
 docker push "solinea/${NAME}:${TRAVIS_BRANCH}"
 
-docker images "${DOCKER_REGISTRY_DEV}/${NAME}"
+docker images
