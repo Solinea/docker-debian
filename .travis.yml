@@ -25,6 +25,9 @@ before_deploy:
 deploy:
   - provider: script
     script: build/bin/push-artifactory
+    on:
+      branch: master
+      tags: true
 notifications:
   email: false
   slack:
