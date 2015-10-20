@@ -24,10 +24,13 @@ before_deploy:
                  "${DOCKER_REGISTRY_DEV}"
 deploy:
   - provider: script
-    script: build/bin/push-artifactory
+    script: hack/bin/push-images-release
+    on:
+      tags: true
+  - provider: script
+    script: hack/bin/push-images-master
     on:
       branch: master
-      tags: true
 notifications:
   email: false
   slack:
